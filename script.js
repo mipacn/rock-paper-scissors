@@ -1,23 +1,3 @@
-
-function humanChoice() {
-    let hchoice
-    let newchoice
-    hchoice = prompt("rock, paper, or scissors?")
-    if (hchoice == null) {
-        console.log("please enter a correct value, and refresh to start again")
-    }
-    else {
-        newchoice = hchoice.toLowerCase()
-        if (newchoice != "rock" && newchoice != "paper" && newchoice != "scissors"){
-        
-        }
-        else{
-            console.log("your choice was " + newchoice)
-            return newchoice
-        }
-    }  
-}
-
 function computerChoice () {
     let mchoice
     let random = Math.random()
@@ -45,60 +25,200 @@ function computerChoice () {
     return mchoice
 }
 
+
+let gamesCount = 0
 let humanScore = 0
 let computerScore = 0
-let gamesCount = 0
 
-function playRound (comp, pers) {
-    if (pers != "rock" && pers != "paper" && pers != "scissors"){
-        console.log("please enter a correct value, and refresh to start again")
+
+
+
+const div = document.querySelector(".two")
+const div1 = document.querySelector(".one")
+
+
+const hscore = document.createElement("h3")
+div.append(hscore)
+const cscore = document.createElement("h3")
+div.append(cscore)
+hscore.textContent = ("your score is: 0")
+cscore.textContent = ("the computer score is: 0" )
+
+const winner = document.createElement("h1")
+div.append(winner)
+
+let aclaration = document.createElement("h3")
+div.append(aclaration)
+
+
+function playRock (comp) {
+
+    const cchoice = document.createElement("p")
+    cchoice.textContent = ("the machine choice was "+ comp)
+    div.append(cchoice)
+
+    const result = document.createElement("p")
+    div.append(result)
+
+    if (comp == "rock"){
+        result.textContent = "this round ended in a tie"
+
+    }
+    else if (comp == "paper"){
+        result.textContent = "computer won this round"
+        cscore.textContent = ("the computer score is: " + (computerScore += 1))
     }
     else {
-        console.log("the machine choice was "+ comp)
-        if (comp == "rock" && pers == "paper"){
-            console.log("you won this round")
-            humanScore += 1
-        }
-        else if (comp == "rock" && pers == "scissors"){
-            console.log("machine won this round")
-            computerScore += 1
-        }
-        else if (comp == "rock" && pers == "rock"){
-            console.log("tie")
-        }
-    
-        else if (comp == "paper" && pers == "scissors"){
-            console.log("you won this round")
-            humanScore += 1
-        }
-        else if (comp == "paper" && pers == "rock"){
-            console.log("machine won this round")
-            computerScore += 1
-        }
-        else if (comp == "paper" && pers == "paper"){
-            console.log("tie")
-        }
-    
-        else if (comp == "scissors" && pers == "rock"){
-            console.log("you won this round")
-            humanScore += 1
-        }
-        else if (comp == "scissors" && pers == "paper"){
-            console.log("computer won this round")
-            computerScore += 1
-        }
-        else console.log("tie")
-    
-        console.log("your score is: " + humanScore)
-        console.log("the computer score is: " + computerScore)
-        gamesCount += 1
-        return gamesCount     
+        result.textContent = "you won this round"
+        hscore.textContent = ("your score is: " + (humanScore += 1))
+    }
+
+    if (humanScore == 5){
+        winner.textContent = "you won the game"
+        aclaration.textContent = "refresh to play again"
+        btn1.disabled = true
+        btn2.disabled = true
+        btn3.disabled = true
+
+        let refresh = document.createElement("button")
+        refresh.textContent = "refresh"
+        div1.append(refresh)
+
+        refresh.addEventListener("click", () => location.reload()) 
     }
     
+    else if (computerScore == 5){
+        winner.textContent = "the computer won the game"
+        aclaration.textContent = "refresh to play again"
+        btn1.disabled = true
+        btn2.disabled = true
+        btn3.disabled = true
+
+        let refresh = document.createElement("button")
+        refresh.textContent = "refresh"
+        div1.append(refresh)
+
+        refresh.addEventListener("click", () => location.reload())
+    }
+        
+}
+
+function playPaper (comp) {
+    const cchoice = document.createElement("p")
+    cchoice.textContent = ("the machine choice was "+ comp)
+    div.append(cchoice)
+
+    const result = document.createElement("p")
+    div.append(result)
+
+    if (comp == "paper"){
+        result.textContent = "this round ended in a tie"
+
+    }
+    else if (comp == "scissors"){
+        result.textContent = "computer won this round"
+        cscore.textContent = ("the computer score is: " + (computerScore += 1))
+    }
+    else {
+        result.textContent = "you won this round"
+        hscore.textContent = ("your score is: " + (humanScore += 1))
+    }
+
+    if (humanScore == 5){
+        winner.textContent = "you won the game"
+        aclaration.textContent = "refresh to play again"
+        btn1.disabled = true
+        btn2.disabled = true
+        btn3.disabled = true
+
+        let refresh = document.createElement("button")
+        refresh.textContent = "refresh"
+        div1.append(refresh)
+
+        refresh.addEventListener("click", () => location.reload()) 
+
+    }
+    
+    else if (computerScore == 5){
+        aclaration.textContent = "refresh to play again"
+        winner.textContent = "the computer won the game"
+        btn1.disabled = true
+        btn2.disabled = true
+        btn3.disabled = true
+
+        let refresh = document.createElement("button")
+        refresh.textContent = "refresh"
+        div1.append(refresh)
+
+        refresh.addEventListener("click", () => location.reload()) 
+    }
+        
+}
+
+function playScissors (comp) {
+    const cchoice = document.createElement("p")
+    cchoice.textContent = ("the machine choice was "+ comp)
+    div.append(cchoice)
+
+    const result = document.createElement("p")
+    div.append(result)
+
+    if (comp == "scissors"){
+        result.textContent = "this round ended in a tie"
+
+    }
+    else if (comp == "rock"){
+        result.textContent = "computer won this round"
+        cscore.textContent = ("the computer score is: " + (computerScore += 1))
+    }
+    else {
+        result.textContent = "you won this round"
+        hscore.textContent = ("your score is: " + (humanScore += 1))
+    }
+
+    if (humanScore == 5){
+        winner.textContent = "you won the game"
+        aclaration.textContent = "refresh to play again"
+        btn1.disabled = true
+        btn2.disabled = true
+        btn3.disabled = true
+
+        let refresh = document.createElement("button")
+        refresh.textContent = "refresh"
+        div1.append(refresh)
+
+        refresh.addEventListener("click", () => location.reload()) 
+    }
+    
+    else if (computerScore == 5){
+        winner.textContent = "the computer won the game"
+        aclaration.textContent = "refresh to play again"
+        btn1.disabled = true
+        btn2.disabled = true
+        btn3.disabled = true
+
+        let refresh = document.createElement("button")
+        refresh.textContent = "refresh"
+        div1.append(refresh)
+
+        refresh.addEventListener("click", () => location.reload()) 
+    }
+     
 }
 
 
+let btn1 = document.querySelector(".btn1")
+let btn2 = document.querySelector(".btn2")
+let btn3 = document.querySelector(".btn3")
 
+btn1.addEventListener("click", () => playRock(computerChoice()))
+btn2.addEventListener("click", () => playPaper(computerChoice()))
+btn3.addEventListener("click", () => playScissors(computerChoice()))
+
+
+
+// playRound(computerChoice(), humanChoice())s
+/*x 
 function playGame(count){
     if (count < 5) {
         playRound(computerChoice(), humanChoice())
@@ -117,6 +237,6 @@ function playGame(count){
 }
 
 playGame(playRound(computerChoice(), humanChoice()))
-
+*/
 
 
